@@ -51,7 +51,6 @@ module.exports = (sequelize, DataTypes) => {
       const dueLaterTodoList = dueLaterTodos.map(todo => todo.displayableString()).join("\n");
       console.log(dueLaterTodoList);
       this.dueLater();
-
     }
 
     static async overdue() {
@@ -69,8 +68,6 @@ module.exports = (sequelize, DataTypes) => {
       catch (error) {
         console.log(error);
       }
-
-
     }
 
     static async dueToday() {
@@ -126,7 +123,7 @@ module.exports = (sequelize, DataTypes) => {
     displayableString() {
       let checkbox = this.completed ? "[x]" : "[ ]";
       let dateString = this.dueDate == new Date().toLocaleDateString("en-CA") ? "" : this.dueDate;        
-      return `${this.id}. ${checkbox} ${this.title} ${ dateString}`;
+      return `${this.id}. ${checkbox} ${this.title} ${ dateString}`.trim();
     }
   }
   Todo.init(
